@@ -21,13 +21,19 @@ param(
 # Script should stop immediately on an error
 $ErrorActionPreference = "Stop"
 
+$HEADER_FILE_NAME = "SchemaJson.h"
+
+if ((Split-Path -Path $outPath -Leaf) -eq $HEADER_FILE_NAME)
+{
+    $outPath = Split-Path -Path $outPath
+}
+
 if(-not (Test-Path $outPath))
 {
     New-Item -Path $outPath -ItemType Directory | Out-Null
 }
 
 # Header file name and path
-$HEADER_FILE_NAME = "SchemaJson.h"
 $HEADER_FILE = Join-Path -Path "$outPath" -ChildPath "$HEADER_FILE_NAME"
 
 # Schema directory path

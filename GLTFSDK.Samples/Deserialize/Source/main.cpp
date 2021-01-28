@@ -205,7 +205,7 @@ namespace
         // If the file has a '.gltf' extension then create a GLTFResourceReader
         if (pathFileExt == MakePathExt(GLTF_EXTENSION))
         {
-            auto gltfStream = streamReader->GetInputStream(pathFile.u8string()); // Pass a UTF-8 encoded filename to GetInputString
+            auto gltfStream = streamReader->GetInputStream(pathFile.string()); // Pass a UTF-8 encoded filename to GetInputString
             auto gltfResourceReader = std::make_unique<GLTFResourceReader>(std::move(streamReader));
 
             std::stringstream manifestStream;
@@ -222,7 +222,7 @@ namespace
         // JSON chunk and resource data from the binary chunk.
         if (pathFileExt == MakePathExt(GLB_EXTENSION))
         {
-            auto glbStream = streamReader->GetInputStream(pathFile.u8string()); // Pass a UTF-8 encoded filename to GetInputString
+            auto glbStream = streamReader->GetInputStream(pathFile.string()); // Pass a UTF-8 encoded filename to GetInputString
             auto glbResourceReader = std::make_unique<GLBResourceReader>(std::move(streamReader), std::move(glbStream));
 
             manifest = glbResourceReader->GetJson(); // Get the manifest from the JSON chunk

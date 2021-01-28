@@ -239,11 +239,11 @@ namespace
 
         if (auto glbResourceWriter = dynamic_cast<GLBResourceWriter*>(&gltfResourceWriter))
         {
-            glbResourceWriter->Flush(manifest, pathFile.u8string()); // A GLB container isn't created until the GLBResourceWriter::Flush member function is called
+            glbResourceWriter->Flush(manifest, pathFile.string()); // A GLB container isn't created until the GLBResourceWriter::Flush member function is called
         }
         else
         {
-            gltfResourceWriter.WriteExternal(pathFile.u8string(), manifest); // Binary resources have already been written, just need to write the manifest
+            gltfResourceWriter.WriteExternal(pathFile.string(), manifest); // Binary resources have already been written, just need to write the manifest
         }
     }
 }
